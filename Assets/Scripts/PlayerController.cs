@@ -6,20 +6,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    [Header("Settings")]
     public float Speed = 2f;
     public float Sensitivity = 1f;
     public float ScrollSensitivity = 1f;
-
+    public float MapSpeed = 10f;
+    
+    [Header("Scream")]
     public GameObject ScreamRange;
     public float ScreamRangeRadius = 2f;
     public float ScreamCooldown = 1f;
     public float ScreamAttackDamage = 10f;
 
+    [Header("Surprise")]
     public GameObject SurpriseRange;
+    public bool is_SurpriseUseable = false;
     public float SurpriseRangeRadius = 2f;
     public float SurpriseCooldown = 3f;
     public float SurpriseAttackDamage = 10f;
     public float SurpriseDuration = 1f;
+    [Header("Level Table")]
+    public List<int> LevelTable;
 
     private Animator Anim;
 
@@ -44,9 +52,40 @@ public class PlayerController : MonoBehaviour
         Anim = this.GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(RandomMoveCoroutine());
-
+        GameManager.Instance.AddSkillEvent.AddListener(OnAddSkillEvent);
+        GameManager.Instance.UpgradeEvent.AddListener(OnUpgradeEvent);
     }
-
+    public void OnAddSkillEvent(int type)
+    {
+        if (type == 0)
+            is_SurpriseUseable = true;
+    }
+    public void OnUpgradeEvent(int type, int? impact)
+    {
+        switch (type)
+        {
+            case 1:
+                ScreamRangeRadius *= ((100f + impact) / 100f) ?? 1;
+                break;
+            case 2:
+                ScreamAttackDamage *= ((100f + impact) / 100f) ?? 1;
+                break;
+            case 3:
+                SurpriseRangeRadius *= ((100f + impact) / 100f) ?? 1;
+                break;
+            case 4:
+                SurpriseAttackDamage *= ((100f + impact) / 100f) ?? 1;
+                break;
+            case 5:
+                SurpriseDuration *= ((100f + impact) / 100f) ?? 1;
+                break;
+            case 6:
+                MapSpeed *= ((100f - impact) / 100f) ?? 1;
+                break;
+            default:
+                break;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -90,15 +129,16 @@ public class PlayerController : MonoBehaviour
     }
     void Surprise()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            if (surprise_cooldown_remain > 0) return;
+        if (is_SurpriseUseable)
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                if (surprise_cooldown_remain > 0) return;
 
-            surprise_cooldown_remain = SurpriseCooldown;
-            Anim.SetTrigger("Surprise");
-            SurpriseRange.GetComponent<Collider>().enabled = true;
-            StartCoroutine(ISurpriseAttackCooldown(SurpriseRange.GetComponent<Collider>()));
-        }
+                surprise_cooldown_remain = SurpriseCooldown;
+                Anim.SetTrigger("Surprise");
+                SurpriseRange.GetComponent<Collider>().enabled = true;
+                StartCoroutine(ISurpriseAttackCooldown(SurpriseRange.GetComponent<Collider>()));
+            }
     }
     void RandomMove()
     {
@@ -109,14 +149,14 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             r_dir = Random.insideUnitSphere;
-            r_speed = Random.Range(0f, 0f);
+            r_speed = Random.Range(0f, MapSpeed);
             yield return new WaitForSeconds(3);
         }
     }
     IEnumerator IScreamAttackCooldown(Collider col)
     {
         var time = 0;
-        
+
         while (scream_cooldown_remain > 0)
         {
             yield return null;

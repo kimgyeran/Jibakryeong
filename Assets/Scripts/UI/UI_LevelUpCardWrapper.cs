@@ -53,7 +53,9 @@ public class UI_LevelUpCardWrapper : MonoBehaviour
         if(eventData.EventId == 0)
         {
             isUnlocked = true;
+            GameManager.Instance.AddSkillEvent.Invoke(0);
         }
+        GameManager.Instance.UpgradeEvent.Invoke(eventData.EventId, eventData.Impact);
         instance.gameObject.SetActive(false);
     }
 

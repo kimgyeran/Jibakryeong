@@ -269,15 +269,18 @@ MonoBehaviour:
   Speed: 2
   Sensitivity: 1
   ScrollSensitivity: 1
+  MapSpeed: 10
   ScreamRange: {fileID: 4904089749203216483}
   ScreamRangeRadius: 2
   ScreamCooldown: 1
   ScreamAttackDamage: 10
   SurpriseRange: {fileID: 2852829827246706081}
+  is_SurpriseUseable: 0
   SurpriseRangeRadius: 2
   SurpriseCooldown: 3
   SurpriseAttackDamage: 10
   SurpriseDuration: 1
+  LevelTable: 0a0000000a0000000a0000000a0000000a0000000a0000000a000000
 --- !u!1 &2178283572493271772
 GameObject:
   m_ObjectHideFlags: 0
