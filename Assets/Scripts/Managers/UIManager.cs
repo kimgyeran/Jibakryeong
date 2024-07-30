@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public static class UIManager
     {
         Skill_Attack, Skill_Scream,
         ExpBar, NowLevel, LeftEnemyCount, AlertDistance, SpeedBar,
-        LevelUpSelection
+        LevelUpCardWrapper
     }
     /// <summary>
     /// UIElement Enum에 해당하는 스크립트를 가져옵니다.
@@ -57,7 +58,9 @@ public static class UIManager
 
             GameObject speedBar = canvas.transform.Find("UI_SpeedBar").gameObject;
             dict.Add(UIElement.SpeedBar, (speedBar, speedBar.GetComponent<UI_SpeedBar>()));
-            
+
+            GameObject levelUp = canvas.transform.Find("UI_LevelUpCardWrapper").gameObject;
+            dict.Add(UIElement.LevelUpCardWrapper, (levelUp, levelUp.GetComponent<UI_LevelUpCardWrapper>()));
         }
     }
 }
