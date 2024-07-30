@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
@@ -13,6 +14,7 @@ public class UI_SpeedBar : MonoBehaviour
     {
         text = transform.GetChild(1).gameObject.GetComponent<Text>();
         manager = GameManager.Instance;
+        pc = manager.Player.GetComponent<PlayerController>();
     }
     public void SetSpeed(int speed)
     {
@@ -21,7 +23,7 @@ public class UI_SpeedBar : MonoBehaviour
 
     private void Update()
     {
-        
+        SetSpeed((int)pc.Speed);
     }
 }
 
