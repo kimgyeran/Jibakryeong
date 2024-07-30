@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Player = Player ?? GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        Center = Center ?? GameObject.FindGameObjectWithTag("Center");
     }
     private void Update()
     {
