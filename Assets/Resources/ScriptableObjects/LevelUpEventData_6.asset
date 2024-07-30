@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71a590b7c11e5747a8214cac138db9b, type: 3}
+  m_Name: LevelUpEventData_6
+  m_EditorClassIdentifier: 
+  eventName: "\uC9C0\uD3C9\uC88C\uD45C\uACC4 \uC801\uC751"
+  description: "\uC9C0\uD3C9\uC88C\uD45C\uACC4\uC5D0 \uC801\uC751\uD558\uC5EC {Impact}\uB9CC\uD07C
+    \uC9C0\uAD6C\uC758 \uC6B4\uB3D9\uC5D0 \uC775\uC219\uD574\uC9D1\uB2C8\uB2E4."
+  eventId: 6
+  pictureId: 2
+  minImpact: 10
+  maxImpact: 20
