@@ -94,6 +94,7 @@ public class PeopleAI : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
         agent.enabled = false;
         people.is_Runaway = true;
+        GameManager.Instance.RunPeopleEvent.Invoke(people.EXP);
         GameObject.Destroy(gameObject, 3f);
     }
     void RunawayUpdate()

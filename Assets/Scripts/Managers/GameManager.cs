@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
+    [HideInInspector]
     public UnityEvent<int,int?> UpgradeEvent;
+    [HideInInspector]
     public UnityEvent<int> AddSkillEvent;
-
+    [HideInInspector]
+    public UnityEvent<int> RunPeopleEvent;
     private void Awake()
     {
         if (_instance == null)
