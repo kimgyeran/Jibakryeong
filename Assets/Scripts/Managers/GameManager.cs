@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    
+    public PeopleFactory people = new PeopleFactory();
     public static GameManager Instance
     {
         get
