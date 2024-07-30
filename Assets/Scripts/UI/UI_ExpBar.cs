@@ -11,6 +11,7 @@ public class UI_ExpBar : MonoBehaviour
     int nowProg = 0;
     void Start()
     {
+        
         progressBar = transform.GetChild(0).gameObject;
         pBarRect = progressBar.GetComponent<RectTransform>();
         adjustProgressBar();
@@ -32,6 +33,9 @@ public class UI_ExpBar : MonoBehaviour
     {
         pBarRect.localScale = new Vector3((float)nowProg / (float)maxProg, 1f);
     }
-
+    private void Update()
+    {
+        SetExpValue(Mathf.FloorToInt(GameManager.Instance.Player.EXPPercent));
+    }
 
 }

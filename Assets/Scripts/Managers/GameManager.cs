@@ -28,7 +28,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent<int> AddSkillEvent;
     [HideInInspector]
-    public UnityEvent<int> RunPeopleEvent;
+    public UnityEvent<int> PeopleRunEvent;
+
+    public PlayerController Player { get; private set; }
     private void Awake()
     {
         if (_instance == null)
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
     }
-
+    private void Start()
+    {
+        Player = Player ?? GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
 }

@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public List<int> LevelTable;
     public int CurLevel = 0;
     public int CurEXP;
+    public float EXPPercent;
 
     private Animator Anim;
 
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(RandomMoveCoroutine());
         GameManager.Instance.AddSkillEvent.AddListener(OnAddSkillEvent);
         GameManager.Instance.UpgradeEvent.AddListener(OnUpgradeEvent);
-        GameManager.Instance.RunPeopleEvent.AddListener(OnRunPeopleEvent);
+        GameManager.Instance.PeopleRunEvent.AddListener(OnPeopleRunEvent);
     }
     public void OnAddSkillEvent(int type)
     {
@@ -90,14 +91,15 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    public void OnRunPeopleEvent(int EXP)
+    public void OnPeopleRunEvent(int exp)
     {
-        if (EXP + CurEXP >= LevelTable[CurLevel])
+        if (exp + CurEXP >= LevelTable[CurLevel])
         {
-            CurEXP = EXP + CurEXP - LevelTable[CurLevel];
+            CurEXP = exp + CurEXP - LevelTable[CurLevel];
             CurLevel++;
         }
-        CurEXP += EXP;
+        CurEXP += exp;
+        EXPPercent = CurEXP / LevelTable[CurLevel];
     }
     // Update is called once per frame
     void Update()
