@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 6220881454696023223}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -281,6 +281,8 @@ MonoBehaviour:
   SurpriseAttackDamage: 10
   SurpriseDuration: 1
   LevelTable: 0a0000000a0000000a0000000a0000000a0000000a0000000a000000
+  CurLevel: 0
+  CurEXP: 0
 --- !u!1 &2178283572493271772
 GameObject:
   m_ObjectHideFlags: 0

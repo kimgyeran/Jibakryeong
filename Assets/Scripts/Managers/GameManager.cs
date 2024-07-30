@@ -23,10 +23,14 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
+    [HideInInspector]
     public UnityEvent<int,int?> UpgradeEvent;
+    [HideInInspector]
     public UnityEvent<int> AddSkillEvent;
+    [HideInInspector]
+    public UnityEvent<int> PeopleRunEvent;
 
+    public PlayerController Player { get; private set; }
     private void Awake()
     {
         if (_instance == null)
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
     }
-
+    private void Start()
+    {
+        Player = Player ?? GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 
 }

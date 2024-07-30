@@ -26,8 +26,12 @@ public class PlayerController : MonoBehaviour
     public float SurpriseCooldown = 3f;
     public float SurpriseAttackDamage = 10f;
     public float SurpriseDuration = 1f;
+
     [Header("Level Table")]
     public List<int> LevelTable;
+    public int CurLevel = 0;
+    public int CurEXP;
+    public float EXPPercent;
 
     private Animator Anim;
 
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(RandomMoveCoroutine());
         GameManager.Instance.AddSkillEvent.AddListener(OnAddSkillEvent);
         GameManager.Instance.UpgradeEvent.AddListener(OnUpgradeEvent);
+        GameManager.Instance.PeopleRunEvent.AddListener(OnPeopleRunEvent);
     }
     public void OnAddSkillEvent(int type)
     {
@@ -85,6 +90,16 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void OnPeopleRunEvent(int exp)
+    {
+        if (exp + CurEXP >= LevelTable[CurLevel])
+        {
+            CurEXP = exp + CurEXP - LevelTable[CurLevel];
+            CurLevel++;
+        }
+        CurEXP += exp;
+        EXPPercent = CurEXP / LevelTable[CurLevel];
     }
     // Update is called once per frame
     void Update()
