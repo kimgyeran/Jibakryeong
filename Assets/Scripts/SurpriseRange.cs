@@ -19,7 +19,7 @@ public class SurpriseRange : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var peopleAI = other.GetComponent<PeopleAI>();
-        peopleAI.Hit(player.SurpriseAttackDamage);
+        peopleAI.Hit(player.SurpriseAttackDamage * GameManager.Instance.Distance / GameManager.Instance.MaxDistance);
         peopleAI.Surprised(player.SurpriseDuration);
     }
 }

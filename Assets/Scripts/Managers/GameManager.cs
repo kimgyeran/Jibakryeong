@@ -23,12 +23,19 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
+    public float MaxDistance = 500f;
+    public float WarningDistance = 400f;
+    public float Distance;
+    public GameObject Center;
+
     [HideInInspector]
     public UnityEvent<int,int?> UpgradeEvent;
     [HideInInspector]
     public UnityEvent<int> AddSkillEvent;
     [HideInInspector]
     public UnityEvent<int> PeopleRunEvent;
+    [HideInInspector]
+    public UnityEvent WarnnigEvent;
 
     public PlayerController Player { get; private set; }
     private void Awake()
@@ -49,5 +56,24 @@ public class GameManager : MonoBehaviour
     {
         Player = Player ?? GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
+    private void Update()
+    {
+        CalcDistance();
+        if (Distance > WarningDistance)
+        {
+            WarnnigEvent.Invoke();
+        }
+        if(Distance>MaxDistance)
+        {
+            GameOver();
+        }
+    }
+    void CalcDistance()
+    {
+        Distance = (Center.transform.position - Player.transform.position).magnitude;
+    }
+    void GameOver()
+    {
 
+    }
 }

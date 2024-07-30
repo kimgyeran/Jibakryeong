@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
         ChangeSpeed();
         Rotate();
         Move();
+        
         Scream();
         Surprise();
     }
@@ -196,9 +197,5 @@ public class PlayerController : MonoBehaviour
         }
         if (col.enabled)
             col.enabled = false;
-    }
-    public void Upgrade()
-    {
-
     }
 }
