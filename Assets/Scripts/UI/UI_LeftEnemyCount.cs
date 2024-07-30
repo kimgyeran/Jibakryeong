@@ -12,6 +12,6 @@ public class UI_LeftEnemyCount : MonoBehaviour
     }
     public void SetEnemyCount(int level)
     {
-        text.text = $"Left : {level}";
+        text.text = $"Left : {level}"; 
     }
 }

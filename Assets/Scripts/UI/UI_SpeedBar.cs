@@ -33,5 +33,4 @@ public class UI_SpeedBar : MonoBehaviour
         pBarRect.localScale = new Vector3(nowProg / maxProg, 1f);
     }
 
-
 }
