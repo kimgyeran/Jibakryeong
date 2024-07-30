@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
             if (surprise_cooldown_remain > 0) return;
 
             surprise_cooldown_remain = SurpriseCooldown;
-            Anim.SetTrigger("Surprised");
+            Anim.SetTrigger("Surprise");
             SurpriseRange.GetComponent<Collider>().enabled = true;
             StartCoroutine(ISurpriseAttackCooldown(SurpriseRange.GetComponent<Collider>()));
         }
