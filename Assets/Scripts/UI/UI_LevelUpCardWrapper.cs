@@ -70,7 +70,6 @@ public class UI_LevelUpCardWrapper : MonoBehaviour
         {
             instance = this;
         }
-        //instance.gameObject.SetActive(false);
-        SetRandomCard();
+        instance.gameObject.SetActive(false);
     }
 }
