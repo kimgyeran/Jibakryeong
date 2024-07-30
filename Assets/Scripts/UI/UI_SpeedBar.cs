@@ -1,36 +1,30 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_SpeedBar : MonoBehaviour
-{ 
-    GameObject progressBar;
-    RectTransform pBarRect;
-    float maxProg = 100;
-    float nowProg = 0;
-    void Start()
+{
+    GameManager manager;
+    PlayerController pc;
+    Text text;
+    public void Start()
     {
-        progressBar = transform.GetChild(0).gameObject;
-        pBarRect = progressBar.GetComponent<RectTransform>();
-        adjustProgressBar();
+        text = transform.GetChild(1).gameObject.GetComponent<Text>();
+        manager = GameManager.Instance;
+        pc = manager.Player.GetComponent<PlayerController>();
     }
-    public void SetMaxExp(float max)
+    public void SetSpeed(int speed)
     {
-        maxProg = max;
-        adjustProgressBar();
+        text.text = speed.ToString();
     }
 
-    public void SetExpValue(float exp)
+    private void Update()
     {
-        if (exp > maxProg) return;
-        nowProg = exp;
-        adjustProgressBar();
+        SetSpeed((int)pc.Speed);
     }
-
-    private void adjustProgressBar()
-    {
-        pBarRect.localScale = new Vector3(nowProg / maxProg, 1f);
-    }
-
 }
+
+
