@@ -35,7 +35,7 @@ public class UI_AlertDistance : MonoBehaviour
     {
         image = GetComponent<Image>();
         image.color = invisible;
-    }
+    }   
 
     float offset = 0.5f;
     bool isBarely = true;

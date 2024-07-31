@@ -6,9 +6,7 @@ using UnityEngine;
 public class PeopleFactory 
 {
     public PeopleFactory()
-    {
-        levelArt = GameObject.Find("levelArt");
-        StartStage();
+    { 
     }
     static int[] stageTable = new int[5] {10,13,15,17,19};
     public GameObject people;
@@ -20,6 +18,7 @@ public class PeopleFactory
     {
         init();
         nowPeople = stageTable[nowStage - 1];
+        people = GameObject.Find("Woman");
         left.SetEnemyCount(nowPeople);
         InstantiatePeople(nowPeople);
     }
@@ -39,7 +38,7 @@ public class PeopleFactory
     {
         for (int i = 0; i < peopleCount; i++)
         {
-            GameObject.Instantiate(people, levelArt.transform.position + GetRandomPosition(), people.transform.rotation);
+            GameObject.Instantiate(people, new Vector3(2, 0, -11) + GetRandomPosition(), people.transform.rotation);
         }
     }
     int offset = 10;

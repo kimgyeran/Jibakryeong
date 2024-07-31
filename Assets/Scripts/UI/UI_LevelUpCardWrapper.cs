@@ -13,7 +13,10 @@ public class UI_LevelUpCardWrapper : MonoBehaviour
 
     public void SetRandomCard()
     {
-        instance.gameObject.SetActive(true);
+        for (int i = 0; i < 3; i++)
+        {
+            LevelUpCardArr[i].gameObject.SetActive(true);
+        }
         int min = 1;
         if (!isUnlocked)
         {
@@ -56,7 +59,11 @@ public class UI_LevelUpCardWrapper : MonoBehaviour
             GameManager.Instance.AddSkillEvent.Invoke(0);
         }
         GameManager.Instance.UpgradeEvent.Invoke(eventData.EventId, eventData.Impact);
-        instance.gameObject.SetActive(false);
+
+        for (int i = 0; i < 3; i++)
+        {
+            LevelUpCardArr[i].gameObject.SetActive(false);
+        }
     }
 
     private void Start()
@@ -70,6 +77,9 @@ public class UI_LevelUpCardWrapper : MonoBehaviour
         {
             instance = this;
         }
-        instance.gameObject.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            LevelUpCardArr[i].gameObject.SetActive(false);
+        }
     }
 }

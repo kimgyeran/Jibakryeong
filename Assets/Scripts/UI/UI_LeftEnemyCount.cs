@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_LeftEnemyCount : MonoBehaviour
 {
     Text text;
-    public void Start()
+    public void Awake()
     {
         text = transform.GetChild(0).gameObject.GetComponent<Text>();
     }
