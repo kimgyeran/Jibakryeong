@@ -19,6 +19,6 @@ public class ScreamRange : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var people = other.GetComponent<PeopleAI>();
-        people.Hit(player.ScreamAttackDamage * GameManager.Instance.Distance/GameManager.Instance.MaxDistance);
+        people.Hit(player.ScreamAttackDamage * (1 - GameManager.Instance.Distance / GameManager.Instance.MaxDistance));
     }
 }

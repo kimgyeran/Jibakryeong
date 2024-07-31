@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public float MaxDistance = 500f;
     public float WarningDistance = 400f;
     public float Distance;
-    public GameObject Center;
+    GameObject center;
+    public GameObject Center { get { return center = center ?? GameObject.FindWithTag("Center"); } }
 
     [HideInInspector]
     public UnityEvent<int,int?> UpgradeEvent;
@@ -55,7 +56,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Player = Player ?? GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        Center = Center ?? GameObject.FindGameObjectWithTag("Center");
         people.StartStage();
     }
     private void Update()

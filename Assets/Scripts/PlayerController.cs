@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             CurLevel++;
         }
         CurEXP += exp;
-        EXPPercent = CurEXP / LevelTable[CurLevel];
+        EXPPercent = CurEXP / LevelTable[CurLevel] * 100;
     }
     // Update is called once per frame
     void Update()
