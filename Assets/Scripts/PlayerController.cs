@@ -59,7 +59,11 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.AddSkillEvent.AddListener(OnAddSkillEvent);
         GameManager.Instance.UpgradeEvent.AddListener(OnUpgradeEvent);
         GameManager.Instance.PeopleRunEvent.AddListener(OnPeopleRunEvent);
+
+        ui_Scream = (UI_Skill)UIManager.GetUI(UIManager.UIElement.Skill_Scream);
+        ui_Surprise = (UI_Skill)UIManager.GetUI(UIManager.UIElement.Skill_Attack);
     }
+    UI_Skill ui_Scream; UI_Skill ui_Surprise;
     public void OnAddSkillEvent(int type)
     {
         if (type == 0)
@@ -132,11 +136,11 @@ public class PlayerController : MonoBehaviour
     }
     void Scream()
     {
+        ui_Scream.adjustCoolDownPanel(scream_cooldown_remain);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (scream_cooldown_remain > 0)
                 return;
-
             scream_cooldown_remain = ScreamCooldown;
             Anim.SetTrigger("Scream");
             ScreamRange.GetComponent<Collider>().enabled = true;
@@ -145,6 +149,7 @@ public class PlayerController : MonoBehaviour
     }
     void Surprise()
     {
+        ui_Surprise.adjustCoolDownPanel(surprise_cooldown_remain);
         if (is_SurpriseUseable)
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {

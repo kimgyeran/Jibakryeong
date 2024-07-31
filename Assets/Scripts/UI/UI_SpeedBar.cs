@@ -14,7 +14,6 @@ public class UI_SpeedBar : MonoBehaviour
     {
         text = transform.GetChild(1).gameObject.GetComponent<Text>();
         manager = GameManager.Instance;
-        pc = manager.Player.GetComponent<PlayerController>();
     }
     public void SetSpeed(int speed)
     {
@@ -22,7 +21,10 @@ public class UI_SpeedBar : MonoBehaviour
     }
 
     private void Update()
-    {
+    {if(pc == null)
+        {
+            pc = manager.Player;
+        }
         SetSpeed((int)pc.Speed);
     }
 }

@@ -13,7 +13,7 @@ public class UI_Skill : MonoBehaviour
     void Start()
     {
         coolDownPanel = this.transform.GetChild(0).gameObject;
-        coolDownPanelRect = coolDownPanel.GetComponent<RectTransform>();    
+        coolDownPanelRect = coolDownPanel.GetComponent<RectTransform>();
     }
 
     float nowCoolDown = 0;
@@ -21,38 +21,33 @@ public class UI_Skill : MonoBehaviour
     {
         nowCoolDown = 0;
         coolDown = _coolDown;
-        isReady = false; 
+        isReady = false;
         StartCoroutine("CoolDown");
     }
 
     IEnumerator CoolDown()
     {
-        while(true)
+        while (true)
         {
-            if(nowCoolDown < coolDown)
-            { 
+            if (nowCoolDown < coolDown)
+            {
                 nowCoolDown += offset;
-                adjustCoolDownPanel();
+                adjustCoolDownPanel(nowCoolDown);
             }
             else
-            { 
+            {
                 isReady = true;
-                adjustCoolDownPanel();
+                adjustCoolDownPanel(nowCoolDown);
                 break;
             }
             yield return new WaitForSeconds(offset);
         }
     }
-    private void adjustCoolDownPanel()
+    public void adjustCoolDownPanel(float _now_cooldown)
     {
-        if(isReady)
-        {
-            coolDownPanelRect.localScale = new Vector2(1,0);
-        }
-        else
-        {
-            coolDownPanelRect.localScale = new Vector2(1, 1f / coolDown * (coolDown - nowCoolDown));
-        }
+
+        coolDownPanelRect.localScale = new Vector2(1, 1f / coolDown * (_now_cooldown));
+
     }
 
 }
